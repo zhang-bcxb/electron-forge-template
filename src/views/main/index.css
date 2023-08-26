@@ -1,0 +1,9 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 防止内容溢出 */
+  overflow: hidden;
+  /* 设置鼠标样式为移动图标 */
+  cursor: move;
+}
