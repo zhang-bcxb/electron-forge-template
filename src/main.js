@@ -1,6 +1,11 @@
-const { app, Menu, BrowserWindow, ipcMain } = require('electron')
+const {app, Menu, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
-const { createMainWindow, createDemoWindow } = require('./window.js')
+const {createMainWindow, createDemoWindow} = require('./window.js')
+const menuConfig = require('./config/menuConfig')
+
+// 设置应用菜单
+const menu = Menu.buildFromTemplate(menuConfig)
+Menu.setApplicationMenu(menu)
 
 // 定义所有可能用到的页面
 const pages = {
@@ -53,7 +58,7 @@ app.on('activate', () => {
 
 // IPC 通信处理窗口移动
 ipcMain.on('move-window', (event, data) => {
-  pages.mainWin.setBounds({ x: data.x, y: data.y, width: mainConfig.width, height: mainConfig.height })
+  pages.mainWin.setBounds({x: data.x, y: data.y, width: mainConfig.width, height: mainConfig.height})
 })
 
 // 打开 Demo 窗口
@@ -80,7 +85,7 @@ ipcMain.on('openMenu', (e) => {
       {
         label: '开发者工具',
         click: () => {
-          pages.mainWin.webContents.openDevTools({ mode: 'detach' })
+          pages.mainWin.webContents.openDevTools({mode: 'detach'})
         },
       },
       {
